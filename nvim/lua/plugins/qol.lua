@@ -12,4 +12,8 @@ return {
 	{ "christoomey/vim-tmux-navigator" },
 	{ "tpope/vim-sleuth" },
 	{ "tpope/vim-surround" },
+	{
+		"karb94/neoscroll.nvim",
+		opts = {}
+	}
 }

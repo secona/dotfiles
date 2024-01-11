@@ -8,7 +8,8 @@ return {
 			"L3MON4D3/LuaSnip",
 			"nvim-tree/nvim-web-devicons",
 			"onsails/lspkind.nvim",
-			"windwp/nvim-autopairs"
+			"windwp/nvim-autopairs",
+			"saecki/crates.nvim"
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -67,7 +68,8 @@ return {
 					{ name = "cmp_luasnip" },
 					{ name = "nvim_lsp" },
 					{ name = "buffer" },
-					{ name = "path" }
+					{ name = "path" },
+					{ name = "crates" }
 				}),
 				formatting = {
 					format = lspkind.cmp_format({

@@ -4,7 +4,7 @@ return {
 		init = function()
 			function _G.set_terminal_keymaps()
 				local opts = { noremap = true, silent = true }
-				vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+				-- vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
 			end
 
 			vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")

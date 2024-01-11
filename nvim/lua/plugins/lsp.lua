@@ -115,6 +115,12 @@ return {
 				handlers = handlers,
 			})
 
+			lsp.mdformat.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				handlers = handlers,
+			})
+
 			vim.diagnostic.config({
 				float = { border = "rounded" }
 			})
@@ -152,6 +158,7 @@ return {
 					"rust_analyzer",
 					"tailwindcss",
 					"tsserver",
+					"mdformat",
 				}
 			})
 
