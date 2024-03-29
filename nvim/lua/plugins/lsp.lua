@@ -30,11 +30,11 @@ return {
 					DiagnosticSignError = "",
 					DiagnosticSignWarning = "",
 					DiagnosticSignHint = "",
-					DiagnosticSignInformation =  "",
+					DiagnosticSignInformation = "",
 				}
 
 				for sign, icon in pairs(icons) do
-					vim.fn.sign_define(sign, { texthl = sign, text = icon, numhl = sign})
+					vim.fn.sign_define(sign, { texthl = sign, text = icon, numhl = sign })
 				end
 			end
 
@@ -101,6 +101,11 @@ return {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				handlers = handlers,
+				settings = {
+					gopls = {
+						buildFlags = { "-tags=dev" },
+					},
+				},
 			})
 
 			lsp.docker_compose_language_service.setup({
@@ -115,7 +120,32 @@ return {
 				handlers = handlers,
 			})
 
-			lsp.mdformat.setup({
+			lsp.bashls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				handlers = handlers,
+			})
+
+			lsp.jdtls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				handlers = handlers,
+				settings = {
+					java = {
+						configuration = {
+							runtimes = {
+								{
+									name = "JavaSE-21",
+									path = "~/.local/share/mise/installs/java/21.0.0",
+									default = true,
+								}
+							}
+						}
+					}
+				}
+			})
+
+			lsp.asm_lsp.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				handlers = handlers,
