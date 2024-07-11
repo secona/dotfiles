@@ -2,22 +2,9 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		dependencies = {
-		},
+		dependencies = {},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"go",
-					"gomod",
-					"gosum",
-					"python",
-					"rust",
-					"vim",
-					"lua"
-				},
-				autotag = {
-					enable = true,
-				},
 				highlight = {
 					enable = true,
 					use_languagetree = true,
@@ -44,13 +31,7 @@ return {
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		config = function()
-			require("rainbow-delimiters.setup").setup({
-				highlight = {
-					"RainbowDelimiterYellow",
-					"RainbowDelimiterOrange",
-					"RainbowDelimiterBlue",
-				}
-			})
+			require("rainbow-delimiters.setup").setup()
 		end
 	},
 	{

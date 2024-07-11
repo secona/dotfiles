@@ -12,6 +12,54 @@ return {
 					base = "#000000",
 				},
 			},
+			integrations = {
+				barbar = true,
+				gitsigns = true,
+				barbecue = {
+					dim_dirname = true, -- directory name is dimmed by default
+					bold_basename = true,
+					dim_context = false,
+					alt_background = false,
+				},
+				mason = true,
+				nvimtree = true,
+				neotree = true,
+				treesitter = true,
+				treesitter_context = true,
+				lsp_trouble = true,
+				cmp = true,
+				illuminate = {
+					enabled = true,
+					lsp = false
+				},
+				rainbow_delimiters = true,
+				native_lsp = {
+					enabled = true,
+					virtual_text = {
+						errors = { "italic" },
+						hints = { "italic" },
+						warnings = { "italic" },
+						information = { "italic" },
+						ok = { "italic" },
+					},
+					underlines = {
+						errors = { "underline" },
+						hints = { "underline" },
+						warnings = { "underline" },
+						information = { "underline" },
+						ok = { "underline" },
+					},
+					inlay_hints = {
+						background = true,
+					},
+				},
+				which_key = true,
+				fidget = true,
+				telescope = {
+					enabled = true,
+					style = "nvchad"
+				}
+			}
 		},
 		init = function()
 			vim.cmd.colorscheme("catppuccin-mocha")
@@ -20,23 +68,13 @@ return {
 
 	{
 		"nvim-lualine/lualine.nvim",
-		config = function()
-			require("lualine").setup({
+		init = function()
+			require('lualine').setup {
 				options = {
-					theme = "catppuccin",
-					-- component_separators = "",
-					-- section_separators = { left = "", right = "" },
-				},
-				sections = {
-					lualine_a = { 'mode' },
-					lualine_b = { 'branch', 'diff', 'diagnostics' },
-					lualine_c = { 'filename' },
-					lualine_x = { 'encoding' },
-					lualine_y = { 'progress' },
-					lualine_z = { 'location' }
-				},
-			})
-		end,
+					theme = "catppuccin"
+				}
+			}
+		end
 	},
 
 	{
@@ -62,4 +100,45 @@ return {
 		"stevearc/dressing.nvim",
 		opts = {},
 	},
+
+	{
+		"RRethy/vim-illuminate",
+		-- opts = {},
+	},
+
+	{
+		"petertriho/nvim-scrollbar",
+		opts = {
+			handle = {
+				blend = 0,
+				color = "#89b4fa"
+			},
+			handlers = {
+				search = true
+			},
+		},
+	},
+
+	{
+		"kevinhwang91/nvim-hlslens",
+		opts = {
+			calm_down = true,
+			nearest_only = true,
+		},
+	},
+
+	{
+		"rasulomaroff/reactive.nvim",
+		opts = {
+			builtin = {
+				cursorline = true,
+				cursor = true,
+				modemsg = true
+			},
+			load = {
+				'catppuccin-mocha-cursor',
+				'catppuccin-mocha-cursorline'
+			}
+		}
+	}
 }

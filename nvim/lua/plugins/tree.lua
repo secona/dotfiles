@@ -1,59 +1,46 @@
 return {
 	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = false,
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
 		dependencies = {
+			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
 		},
-		config = function()
-			require("nvim-tree").setup({
-				renderer = {
-					icons = {
-						git_placement = "signcolumn",
-						diagnostics_placement = "signcolumn",
-						glyphs = {
-							default = "󰈚",
-							symlink = "",
-							folder = {
-								default = "",
-								empty = "",
-								empty_open = "",
-								open = "",
-								symlink = "",
-								symlink_open = "",
-								arrow_open = "",
-								arrow_closed = "",
-							},
-							git = {
-								unstaged = "U",
-								staged = "S",
-								unmerged = "UM",
-								renamed = "R",
-								deleted = "D",
-								untracked = "",
-								ignored = "I",
-							},
-						}
-					},
-					indent_markers = {
-						enable = true
+		opts = {
+			default_component_configs = {
+				icon = {
+					folder_closed = "",
+					folder_open = "",
+					folder_empty = "",
+				},
+				git_status = {
+					symbols = {
+						-- Status type
+						untracked = "",
+						ignored   = "",
+						unstaged  = "󰄱",
+						staged    = "",
+						conflict  = "",
 					}
 				},
-				update_cwd = true,
-				filters = {
-					git_ignored = false,
-					dotfiles = true,
+				indent = {
+					with_expanders = true,
 				},
-				diagnostics = {
-					enable = true,
-				},
-				modified = {
-					enable = true,
-				},
-			})
-		end,
-		init = function ()
-			vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
-		end
-	},
+			},
+			window = {
+				width = 35,
+			},
+			filesystem = {
+				filtered_items = {
+					visible = false,
+					hide_dotfiles = false,
+					hide_gitignored = false,
+					hide_by_name = {
+						".git"
+					}
+				}
+			}
+		}
+	}
 }
