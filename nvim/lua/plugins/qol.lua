@@ -58,6 +58,7 @@ return {
 			vim.keymap.set('n', '<leader>Fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>Fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>Fh', builtin.help_tags, {})
+			vim.keymap.set('n', '<Leader>rf', builtin.lsp_references, {})
 		end
 	}
 }

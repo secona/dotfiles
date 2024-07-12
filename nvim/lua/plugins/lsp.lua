@@ -48,7 +48,7 @@ return {
 				vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
 				vim.keymap.set('n', '<Leader>dc', vim.lsp.buf.declaration, opts)
 				vim.keymap.set('n', '<Leader>df', vim.lsp.buf.definition, opts)
-				vim.keymap.set('n', '<Leader>rf', vim.lsp.buf.references, opts)
+				-- vim.keymap.set('n', '<Leader>rf', vim.lsp.buf.references, opts)
 				vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, opts)
 			end
 
