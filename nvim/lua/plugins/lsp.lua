@@ -20,12 +20,12 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-path",
-			"L3MON4D3/LuaSnip", -- for source
+			"L3MON4D3/LuaSnip",   -- for source
 			"nvim-tree/nvim-web-devicons", -- for icons
 			"onsails/lspkind.nvim", -- for pictograms
 			"windwp/nvim-autopairs", -- for autopairs
 			"saecki/crates.nvim", -- for source
-			"j-hui/fidget.nvim", -- for lsp progress
+			"j-hui/fidget.nvim",  -- for lsp progress
 		},
 		config = function()
 			-- Setup mason
@@ -37,20 +37,15 @@ return {
 
 			-- Setup LSPs
 
-			local lsp_on_attach = function(_, bufnr)
-				-- Keymaps
-				local opts = { noremap = true, silent = true, buffer = bufnr }
-				vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-				vim.keymap.set("n", "<C-Space>", vim.lsp.buf.hover, opts)
-				vim.keymap.set('n', '<Leader>ee', vim.diagnostic.open_float, opts)
-				vim.keymap.set("n", "<Leader>ej", vim.diagnostic.goto_next, opts)
-				vim.keymap.set("n", "<Leader>ek", vim.diagnostic.goto_prev, opts)
-				vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
-				vim.keymap.set('n', '<Leader>dc', vim.lsp.buf.declaration, opts)
-				vim.keymap.set('n', '<Leader>df', vim.lsp.buf.definition, opts)
-				-- vim.keymap.set('n', '<Leader>rf', vim.lsp.buf.references, opts)
-				vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, opts)
-			end
+			local opts = { noremap = true, silent = true }
+			vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+			vim.keymap.set("n", "<C-Space>", vim.lsp.buf.hover, opts)
+			vim.keymap.set('n', '<Leader>ee', vim.diagnostic.open_float, opts)
+			vim.keymap.set("n", "<Leader>ej", vim.diagnostic.goto_next, opts)
+			vim.keymap.set("n", "<Leader>ek", vim.diagnostic.goto_prev, opts)
+			vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
+			vim.keymap.set('n', '<Leader>dc', vim.lsp.buf.declaration, opts)
+			vim.keymap.set('n', '<Leader>df', vim.lsp.buf.definition, opts)
 
 			local lsp_capabilities = vim.tbl_deep_extend(
 				"force",
@@ -79,7 +74,6 @@ return {
 					function(server_name)
 						lsp[server_name].setup({
 							capabilities = lsp_capabilities,
-							on_attach = lsp_on_attach,
 							handlers = lsp_handlers,
 						})
 					end,
@@ -88,7 +82,6 @@ return {
 					["rust_analyzer"] = function()
 						lsp.rust_analyzer.setup({
 							capabilities = lsp_capabilities,
-							on_attach = lsp_on_attach,
 							handlers = lsp_handlers,
 							settings = {
 								['rust-analyzer'] = {
@@ -104,7 +97,6 @@ return {
 					["lua_ls"] = function()
 						lsp.lua_ls.setup({
 							capabilities = lsp_capabilities,
-							on_attach = lsp_on_attach,
 							handlers = lsp_handlers,
 							settings = {
 								Lua = {
@@ -120,6 +112,8 @@ return {
 					end
 				}
 			})
+
+			vim.filetype.add({ extension = { templ = "templ" } })
 
 			-- Config diagnostics
 			vim.diagnostic.config({
@@ -245,4 +239,27 @@ return {
 			}
 		}
 	},
+
+	{
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					javascript = { "prettier" },
+					javascriptreact = { "prettier" },
+					typescript = { "prettier" },
+					typescriptreact = { "prettier" },
+					go = { "goimports", "gofmt" },
+					rust = { "rustfmt" },
+					json = { "jq" },
+					lua = { "stylua" },
+				}
+			})
+
+			vim.keymap.set("n", "<Leader>fm", function()
+				local bufnr = vim.api.nvim_get_current_buf()
+				require("conform").format({ bufnr = bufnr })
+			end)
+		end
+	}
 }

@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -116,21 +116,42 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source ~/.zsh/catppuccin_mocha.zsh
+
+alias ls="eza --icons"
+alias lsa="ls -a"
+alias lst="ls -T"
+alias cd="z"
+alias lg="lazygit"
+
+alias bat="batcat"
+export BAT_THEME="Catppuccin Mocha"
+
+alias cn="cargo nextest --config-file ~/.config/nextest.toml"
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
 # bun completions
-[ -s "/home/secona/.bun/_bun" ] && source "/home/secona/.bun/_bun"
-
+# [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
 
 # go
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
+# export PATH=$PATH:/usr/local/go/bin
+# export PATH=$PATH:$(go env GOPATH)/bin
 
 # local binaries
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:"/mnt/c/Users/vitos/AppData/Local/Programs/Microsoft VS Code/bin"
+
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+
+[ -f "/home/secona/.ghcup/env" ] && . "/home/secona/.ghcup/env" # ghcup-env

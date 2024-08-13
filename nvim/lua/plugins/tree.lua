@@ -8,6 +8,8 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		opts = {
+			enable_git_status = true,
+			enable_diagnostics = true,
 			default_component_configs = {
 				icon = {
 					folder_closed = "",
